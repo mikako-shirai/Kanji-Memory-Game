@@ -3,7 +3,7 @@ body {
 }
 .card-display {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
   justify-content: center;
   align-items: center;
@@ -11,9 +11,9 @@ body {
 
 }
 
-/* .card {
-  color: white;
-  background-color: red;
+.card-front {
+  color: rgb(119, 119, 119);
+  background-color: rgb(217, 255, 0);
   text-align: center;
   height: 160px;
   width: 100px; 
@@ -23,8 +23,9 @@ body {
   border: solid;
   border-radius: 8px;
   cursor: pointer;
-} */
+  box-shadow: 3px 3px 3px gray;
 
+}
 
 .card-flipped {
   color: red;
@@ -38,23 +39,20 @@ body {
   border: solid;
   border-radius: 8px;
   cursor: pointer;
+
 }
 
 
-.card-front {
-  color: rgb(4, 247, 57);
-  background-color: rgb(217, 255, 0);
-  text-align: center;
-  height: 160px;
-  width: 100px; 
-  padding:0px;
-  padding-top: 80px;
-  margin: 0 auto;
-  border: solid;
-  border-radius: 8px;
-  cursor: pointer;
-}
 
 .score-display{
-  font-family: 50px;
+  font-family: 2rem;
+  color: rgb(4, 247, 57);
+  background-color: rgb(217, 255, 0);
+}
+
+.new-game-btn{
+  border: 0;
+  font-family: 2rem;
+  border-radius: 8px;
+  cursor: pointer;
 }
