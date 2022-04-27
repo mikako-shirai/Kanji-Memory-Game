@@ -14,7 +14,17 @@ const kanjiArr = [{src: "fire", meaning: "fire", flipped: false},
 export default function App() {
   const [cards, setCards] = useState([]);
   const [flipped, setFlipped] = useState([]);
-  const [turn, setTurn] = useState(0)
+  const [turns, setTurns] = useState(0)
+
+
+  function cardShuffle() {
+    let shuffled = [...kanjiArr].sort(() => Math.random() - 0.5)
+    .map((card) => ({...card, id: Math.random()}));
+
+    setCards(shuffled)
+    setTurns(0)
+  }
+  
 
   useEffect(() => {
   // if they matched => we keep them
@@ -22,25 +32,30 @@ export default function App() {
   }, [flipped]);
 
   useEffect(() => {
+    console.log(turns)
 
 
-  }, [turn]);
+  }, [turns]);
 
   function handleClick() {
     console.log("card clicked")
+    console.log(cards)
+    setTurns(turns + 1)
   }
 
   function displayCards() {
-   return kanjiArr.map(card => {
-       return <card onClick={handleClick}>{card.src}</card>
+   return cards.map(card => {
+       return <ul className = "card" onClick={handleClick} id={card.id} >{card.src}</ul>
    })
-
-
   }
   
-  // setKanji(kanjiArr);
   return (
-      <div> {displayCards()}
+      <div> 
+      <div className = "card-display">
+        {displayCards()}
+      </div>
+      <button onClick={cardShuffle}>New Game</button>
+
       </div>
       )
 
