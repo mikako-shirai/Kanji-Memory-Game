@@ -37,17 +37,29 @@ export default function App() {
     
         setChoice1(null);
         setChoice2(null);
+
+        
+
+        setTurns(turns + 1)
+
+        console.log("MATCH")
       } else {
         choice1.flipped = false;
         choice2.flipped = false;
         setChoice1(null);
         setChoice2(null);
+
+        
+        setTurns(turns + 1)
+
+        console.log("DIDN'T MATCH")
       }
     }
   }
   
   function setChoices(card){
     if (!choice1 || !choice2){
+      
       if(!choice1){
         setChoice1(card)
       } else {
@@ -62,16 +74,18 @@ export default function App() {
       card.flipped = true
       setChoices(card);
     }
-    setTurns(turns + 1)
+    // setTurns(turns + 1)
   }
 
   function displayCards() { 
     return cards.map(card => {
         return (
-        <div className = "card" key={card.id} onClick={() => handleClick(card)}>
-         <ul className = "card-front" >{card.name}</ul>
-         <ul className = "card-flipped" >{card.name}</ul>
-        </div>)
+         <ul 
+         className = {`card${card.flipped === true ? "-front" : '-flipped'}`} 
+         key={card.id} 
+         onClick={() => handleClick(card)}>
+           {card.name}</ul>
+        )
     })
    }
 
@@ -88,12 +102,19 @@ export default function App() {
     
       }, [turns]);
     
-  
+  // useEffect(()=>{
+  //   return (<div></div>)
+  // },[gameOver])
+
+
+
   return (
       <div> 
       <div className = "card-display">
         {displayCards()}
       </div>
+      <div className = "score-display">{`Score -> ${turns}`}</div>
+
       <button onClick={cardShuffle}>New Game</button>
       </div>
       )

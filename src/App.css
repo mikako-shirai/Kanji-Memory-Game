@@ -1,5 +1,5 @@
 body {
-  background-color: beige;
+  background-color: rgb(4, 247, 57);
 }
 .card-display {
   display: grid;
@@ -7,10 +7,11 @@ body {
   grid-template-rows: repeat(3, 1fr);
   justify-content: center;
   align-items: center;
+  grid-gap: 10px;
 
 }
 
-.card-front {
+/* .card {
   color: white;
   background-color: red;
   text-align: center;
@@ -22,7 +23,7 @@ body {
   border: solid;
   border-radius: 8px;
   cursor: pointer;
-}
+} */
 
 
 .card-flipped {
@@ -37,4 +38,23 @@ body {
   border: solid;
   border-radius: 8px;
   cursor: pointer;
+}
+
+
+.card-front {
+  color: rgb(4, 247, 57);
+  background-color: rgb(217, 255, 0);
+  text-align: center;
+  height: 160px;
+  width: 100px; 
+  padding:0px;
+  padding-top: 80px;
+  margin: 0 auto;
+  border: solid;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.score-display{
+  font-family: 50px;
 }
