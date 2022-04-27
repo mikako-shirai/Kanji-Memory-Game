@@ -10,8 +10,23 @@ body {
 
 }
 
-.card {
+.card-front {
   color: white;
+  background-color: red;
+  text-align: center;
+  height: 160px;
+  width: 100px; 
+  padding:0px;
+  padding-top: 80px;
+  margin: 0 auto;
+  border: solid;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+.card-flipped {
+  color: red;
   background-color: red;
   text-align: center;
   height: 160px;
