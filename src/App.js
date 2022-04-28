@@ -1,5 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react'
+const axios = require('axios')
 // import cardList from './cardlist.jsx'
 
 
@@ -41,18 +42,11 @@ export default function App() {
         choice2.flipped = true;
     
         setChoice1(null);
-        setChoice2(null);
-
-        
-
+        setChoice2(null)
         setTurns(turns + 1)
-
         setFlipped(flipped +2)
 
-        console.log("MATCH")
-  
-        console.log(flipped, cards.length)
-       
+        console.log("MATCH")       
       } else {
 
         setTimeout(() => {
@@ -63,8 +57,6 @@ export default function App() {
           setTurns(turns + 1)
           }, "800")
 
-
-       
         console.log("DIDN'T MATCH")
       }
     }
@@ -99,6 +91,91 @@ export default function App() {
     })
    }
 
+
+  useEffect(() => {
+  //   fetch("/kanji")
+  //     .then((data) => {return data})
+  //     .then(data => console.log(data));
+  // }, []);
+
+
+  axios.get('/kanji').then(resp => {
+
+    console.log("axios", resp.data);
+
+
+})
+
+axios.get('/kanji', {
+  proxy: {
+    host: 'localhost',
+    port: 8080
+  }
+}).then(data => console.log(data));
+
+});
+  
+// (async() => {
+//   const res = await axios.get('/kanji', {
+//     proxy: {
+//       host: 'localhost',
+//       port: 8080
+//     }
+//   });
+//   console.log("proxy test", res.data);
+// })();
+
+
+
+
+
+  //  const displayCardsFromDB = async() => {
+  //   const res = await axios.get("/kanji")
+  //   const data = [res.data.test]
+  //   console.log(data)
+
+  //  }
+
+  //  useEffect(() => {
+  //   displayCardsFromDB()
+  //   }, [])
+
+  
+
+    // .then(body => {
+    //    const reader = body.getReader();
+    //    return reader;
+    // })
+    
+    // .then(data => data.body)
+    // .then(data => console.log(data))
+    
+    // .then(data => {
+    //   console.log(data[0])
+    //   setCards(data[0])
+    // })
+
+    // .catch((err) => {
+    //   console.log(`ERROR`, err)
+    // })
+
+
+
+// async function displayCardsFromDB() {
+// axios
+//  .get("/kanji")
+//  .then(data => console.log(data))
+//  .catch(err => console.log(err))
+
+// }
+
+
+
+
+
+
+
+
   useEffect(() =>{
     checkMatch();
     },[choice1, choice2])
@@ -108,7 +185,7 @@ export default function App() {
     //    //else we flip them back, [turn]
     //   }, [flipped]);
     
-      useEffect(() => {
+  useEffect(() => {
         if (flipped === cards.length){
           console.log("YOU WON")
         }
@@ -121,10 +198,13 @@ export default function App() {
 
 
 
+
+
   return (
       <div> 
       <div className = "card-display">
-        {displayCards()}
+        {/* {displayCardsFromDB()} */}
+        {cards}
       </div>
       <div className = "score-display">{`Score -> ${turns}`}</div>
 

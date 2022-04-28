@@ -1,7 +1,7 @@
 require("dotenv").config({
   path: "./.env.local",
 });
-const pg = require("pg"); //❓
+const pg = require("pg"); 
   /**
    * @type { Object.<string, import("knex").Knex.Config> }
    */

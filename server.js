@@ -18,19 +18,17 @@ app.use(express.json());
 // app.use(cors());
 // app.use(morgan("dev"));
 
-app.get('/', async (req, res) => {
-
+app.get('/kanji', async (req, res) => {
   try {
-    let testData = await db.select('*').from('kanji');
-    res.send(testData).status(200);
-
+    let allKanji = await  db.select('*').from('kanji');
+    res.send(allKanji).status(200);
   } catch (err) {
     console.log(err);
   }
-
-});
+}); 
   
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`)
 })
+
 
