@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react'
 // import cardList from './cardlist.jsx'
 
+
 const kanjiArr = [{name: "fire", meaning: "fire", flipped: false},
  {name: "火", meaning: "fire", flipped: false},
  {name: "water", meaning: "water", flipped: false},
@@ -19,7 +20,7 @@ const kanjiArr = [{name: "fire", meaning: "fire", flipped: false},
 
 export default function App() {
   const [cards, setCards] = useState([]);
-  const [flipped, setFlipped] = useState([]);
+  const [flipped, setFlipped] = useState(null);
   const [choice1, setChoice1] = useState(null)
   const [choice2, setChoice2] = useState(null)
   const [turns, setTurns] = useState(0)
@@ -30,6 +31,7 @@ export default function App() {
     .map((card) => ({...card, id: Math.random()}));
     setCards(shuffled)
     setTurns(0)
+    setFlipped(0)
   }
   
   function checkMatch(){
@@ -45,7 +47,12 @@ export default function App() {
 
         setTurns(turns + 1)
 
+        setFlipped(flipped +2)
+
         console.log("MATCH")
+  
+        console.log(flipped, cards.length)
+       
       } else {
 
         setTimeout(() => {
@@ -74,7 +81,6 @@ export default function App() {
   }
 
   function handleClick(card) {
-
     if (!card.flipped){
       card.flipped = true
       setChoices(card);
@@ -103,8 +109,11 @@ export default function App() {
     //   }, [flipped]);
     
       useEffect(() => {
+        if (flipped === cards.length){
+          console.log("YOU WON")
+        }
     
-      }, [turns]);
+      }, [flipped]);
     
   // useEffect(()=>{
   //   return (<div></div>)
