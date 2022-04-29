@@ -11,7 +11,7 @@ export default function App() {
   const [turns, setTurns] = useState(0);
 
   const getCardsAndShuffle = async () => {
-    const res = await axios.get("https://cc26-kanji-memory-game.herokuapp.com/");
+    const res = await axios.get("https://cc26-kanji-memory-game.herokuapp.com/kanji");
     const cards = res.data;
     const shuffledCards = cards.sort(() => 0.5 - Math.random());
     setCards(shuffledCards);
