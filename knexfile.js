@@ -44,7 +44,6 @@ module.exports = {
     client: 'pg',
     connection: {
       connectionString: process.env.DATABASE_URL,
-      host: "https://cc26-kanji-memory-game.herokuapp.com/",
     },
     ssl: {
       rejectUnauthorised: false
