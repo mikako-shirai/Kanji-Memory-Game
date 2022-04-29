@@ -7,9 +7,9 @@ const path = require('path');
 require("dotenv").config({
   path: "./.env.local",
 });
-
+const environment = process.env.NODE_ENV;
 const config = require("./knexfile");
-const db = knex(config.development);
+const db = knex(config[environment]);
 
 const port = process.env.PORT || 8080;
 
