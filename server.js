@@ -6,9 +6,10 @@ const app = express();
 require("dotenv").config({
   path: "./.env.local",
 });
-
+ 
 const config = require('./knexfile');
-const db = knex(config.development);
+const environment = process.env.DATABASE_URL ? "production" : "development"
+const db = knex(config[environment]);
 
 const port = process.env.PORT || 8080;
 
