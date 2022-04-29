@@ -1,7 +1,7 @@
 const express = require("express");
 const knex = require("knex");
 const app = express();
-// const cors = require('cors');
+const cors = require('cors');
 // const morgan = require('morgan');
 require("dotenv").config({
   path: "./.env.local",
@@ -13,8 +13,10 @@ const db = knex(config.development);
 const port = process.env.PORT || 8080;
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "./src")));
 
-// app.use(cors());
+
+app.use(cors());
 // app.use(morgan("dev"));
 
 app.get("/kanji", async (req, res) => {
