@@ -1,6 +1,8 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import UserScore from "./Components/UserScore";
 const axios = require("axios");
+
 // import cardList from './cardlist.jsx'
 
 export default function App() {
@@ -10,8 +12,10 @@ export default function App() {
   const [choice2, setChoice2] = useState(null);
   const [turns, setTurns] = useState(0);
 
+  const userScore = useRef(null);
+
   const getCardsAndShuffle = async () => {
-    const res = await axios.get("https://cc26-kanji-memory-game.herokuapp.com/kanji");
+    const res = await axios.get("/kanji");
     const cards = res.data;
     const shuffledCards = cards.sort(() => 0.5 - Math.random());
     setCards(shuffledCards);
@@ -20,16 +24,6 @@ export default function App() {
 
     displayCards(cards);
   };
-
-  //run cardShuffle after getCards is finished running
-
-  // const cardShuffle = async () => {
-  //   const shuffledCards = await cards.sort(() => Math.random() - 0.5);
-  //   setCards(shuffledCards);
-  //   setTurns(0);
-  //   setFlipped(0);
-  //   console.log(`shuffled!`, shuffledCards);
-  // };
 
   const displayCards = (cards) => {
     return cards.map((card) => {
@@ -45,9 +39,7 @@ export default function App() {
     });
   };
 
-  const displayTurns = () => {
-    return <h2>Turns: {turns}</h2>;
-  };
+  const displayTurns = () => <h2>Turns: {turns}</h2>;
 
   const checkMatch = () => {
     if (choice1 && choice2) {
@@ -59,7 +51,6 @@ export default function App() {
         setChoice2(null);
         setTurns(turns + 1);
         setFlipped(flipped + 2);
-
         console.log("MATCH");
       } else {
         setTimeout(() => {
@@ -69,7 +60,6 @@ export default function App() {
           setChoice1(null);
           setChoice2(null);
         }, "800");
-
         console.log("DIDN'T MATCH");
       }
     }
@@ -92,14 +82,37 @@ export default function App() {
     }
   };
 
+  const displayLeaderBoard = () => {
+    return (
+      <div>
+        <h2>You won!</h2>
+        <div className="leaderboard">
+          <h2>Enter your name!</h2>
+          <form ref={userScore}>
+            <UserScore label={"Name: "} name={"userName"} />
+          </form>
+          <button onClick={handleSubmitScore}>Submit</button>
+        </div>
+      </div>
+    );
+  };
+
+  function handleSubmitScore() {
+    let form = userScore.current;
+    const userName = form["userName"].value;
+
+    if (userName) {
+      const score = {
+        name: userName,
+        score: turns,
+      };
+      axios.post("/leaderboard", score);
+    }
+  }
+
   useEffect(() => {
     checkMatch();
   }, [choice1, choice2]);
-
-  // useEffect(() => {
-  //   // if they matched => we keep them
-  //    //else we flip them back, [turn]
-  //   }, [flipped]);
 
   useEffect(() => {
     if (flipped === cards.length) {
@@ -114,10 +127,12 @@ export default function App() {
   return (
     <div>
       <h1>Kanji Memory Game</h1>
-
       <button className="new-game-btn" onClick={getCardsAndShuffle}>
         New Game
       </button>
+
+      {flipped === cards.length && displayLeaderBoard()}
+
       <div className="card-display">{displayCards(cards)}</div>
 
       {cards.length > 0 && (

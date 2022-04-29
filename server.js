@@ -1,28 +1,35 @@
 const express = require("express");
 const knex = require("knex");
 const app = express();
-const cors = require('cors');
+// const cors = require('cors');
 // const morgan = require('morgan');
 require("dotenv").config({
   path: "./.env.local",
 });
-const environment = process.env.DATABASE_URL ? "production" : "development";
+
 const config = require("./knexfile");
-const db = knex(config[environment]);
+const db = knex(config.development);
 
 const port = process.env.PORT || 8080;
 
-app.use(express.static(path.join(__dirname, "./src")));
-
 app.use(express.json());
 
-app.use(cors());
+// app.use(cors());
 // app.use(morgan("dev"));
 
 app.get("/kanji", async (req, res) => {
   try {
     let allKanji = await db.select("*").from("kanji");
     res.send(allKanji).status(200);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/leaderboard", async (req, res) => {
+  try {
+    let allLeaderboard = await db.select("*").from("leaderboard");
+    res.send(allLeaderboard).status(200);
   } catch (err) {
     console.log(err);
   }
@@ -36,6 +43,16 @@ app.post("/kanji", async (req, res) => {
     console.log(err);
   }
 });
+
+app.post("/leaderboard", async (req, res) => {
+  try {
+    let newScore = await db.insert(req.body).into("leaderboard");
+    res.send(newScore).status(200);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 /*  */
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
