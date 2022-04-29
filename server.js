@@ -6,9 +6,9 @@ const cors = require('cors');
 require("dotenv").config({
   path: "./.env.local",
 });
-
+const environment = process.env.DATABASE_URL ? "production" : "development";
 const config = require("./knexfile");
-const db = knex(config.development);
+const db = knex(config[environment]);
 
 const port = process.env.PORT || 8080;
 
