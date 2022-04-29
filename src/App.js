@@ -45,6 +45,10 @@ export default function App() {
     });
   };
 
+  const displayTurns = () => {
+    return <h2>Turns: {turns}</h2>;
+  };
+
   const checkMatch = () => {
     if (choice1 && choice2) {
       if (choice1.meaning === choice2.meaning) {
@@ -61,9 +65,9 @@ export default function App() {
         setTimeout(() => {
           choice1.flipped = false;
           choice2.flipped = false;
+          setTurns(turns + 1);
           setChoice1(null);
           setChoice2(null);
-          setTurns(turns + 1);
         }, "800");
 
         console.log("DIDN'T MATCH");
@@ -89,10 +93,6 @@ export default function App() {
   };
 
   useEffect(() => {
-    getCardsAndShuffle();
-  }, []);
-
-  useEffect(() => {
     checkMatch();
   }, [choice1, choice2]);
 
@@ -114,11 +114,15 @@ export default function App() {
   return (
     <div>
       <h1>Kanji Memory Game</h1>
-      <div className="card-display">{displayCards(cards)}</div>
-      <div className="score-display">{`Score -> ${turns}`}</div>
+
       <button className="new-game-btn" onClick={getCardsAndShuffle}>
         New Game
       </button>
+      <div className="card-display">{displayCards(cards)}</div>
+
+      {cards.length > 0 && (
+        <div className="display-turns">{displayTurns()}</div>
+      )}
     </div>
   );
 }

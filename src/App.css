@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(4, 247, 57);
+  background-color: #3b4954;
 }
 .card-display {
   margin-top: 5vh;
@@ -9,46 +9,43 @@ body {
   justify-content: center;
   align-items: center;
   grid-gap: 10px;
-
 }
 
 .card-front {
-  color: rgb(119, 119, 119);
-  background-color: rgb(217, 255, 0);
+  color: rgb(185, 185, 185);
+  background-color: #f95851;
   text-align: center;
   height: 100px;
-  width: 100px; 
-  padding:0px;
+  width: 100px;
+  padding: 0px;
   padding-top: 80px;
   margin: 0 auto;
   border: solid;
   border-radius: 8px;
   cursor: pointer;
   box-shadow: 3px 3px 3px gray;
-
 }
 
 .card-flipped {
-  color: red;
-  background-color: red;
+  color: #249693;
+  background-color: #249693;
   text-align: center;
   height: 100px;
-  width: 100px; 
-  padding:0px;
+  width: 100px;
+  padding: 0px;
   padding-top: 80px;
   margin: 0 auto;
   border: solid;
   border-radius: 8px;
   cursor: pointer;
-
+  box-shadow: 3px 3px 3px gray;
 }
 
-.score-display{
+.display-turns {
   margin-top: 20px;
-  font-family: 2rem;
-  color: rgb(4, 247, 57);
-  background-color: rgb(217, 255, 0);
-  padding-top: 1vh;
+  text-align: center;
+  color: #f95851;
+  background-color: #ffeccc;
 }
 
 .new-game-btn {
@@ -63,11 +60,6 @@ body {
   font-size: 1em;
 }
 .new-game-btn:hover {
-  background: /* #c23866 */ rgb(217, 255, 0);
+  background: #f95851;
   color: #fff;
 }
-
-
-
-
-  
