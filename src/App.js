@@ -120,10 +120,6 @@ export default function App() {
     }
   }, [flipped]);
 
-  // useEffect(()=>{
-  //   return (<div></div>)
-  // },[gameOver])
-
   return (
     <div>
       <h1>Kanji Memory Game</h1>

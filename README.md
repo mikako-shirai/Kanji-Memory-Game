@@ -1,12 +1,42 @@
-# Getting Started with Create React App
+#Kanji Kards
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Sup Nerds!
 
-## Available Scripts
+Using the best possible agile practices, we have created a cutting edge app that tests your knowledge of Kanji. If you can successfully match all of the cards with their correct partners then you win the coveted right to add your name to the highscore list. Strangers walking down the street will have to pick their jaws up off the floor as you walk by and they will cry themselves to sleep at night, praying that they too could achieve this feat. 
+
+The game allows you to select two cards and, if they match, they remain face up. If the cards do not match, then the cards will turn back over. 
+
+Currently you can cheat in the game, though if you do you should take a long hard look in the mirror and think about what you have done. Something you could do to remedy this shame is to implement a fix to prevent cheaters like you from taking advantage.
+
+[TL;DR]: Our app is awesome yo! also - make a .env file to connect your db to your server.
+
+subsequent functionality:
+
+The To-Do list can be found inside the organisation project tab.
+
+examples of things to do:
+
+[ ] update css
+[ ] implement a user feature
+[ ] add more kanji to the kanji database
+[ ] allow users to select a subset of kanji to practice
+[ ] split front-end into components
+[ ] add code to prevent cheating
+[ ] add a leaderboard feature
+
+
+Advanced requirements
+
+[ ] implement spaced repetition algorithm to allow for better learning.
+
+
+
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm start` will start the React Dev Server.
+
+### `npm run server` will start the Express server.
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -39,28 +69,6 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
 ### Deployment
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
@@ -68,3 +76,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
