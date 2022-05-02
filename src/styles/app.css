@@ -70,3 +70,47 @@ body {
   color: #fff;
   background: #f95851;
 }
+
+.board-btn {
+  margin-top: 20px;
+  color: #fff;
+  background: none;
+  border: 2px solid #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.5em;
+}
+.board-btn:hover {
+  color: #fff;
+  background: #f95851;
+}
+
+.score-board {
+  margin-right: auto;
+  margin-left: auto;
+
+  height: 300px;
+  width: 400px;
+  font-family: Raleway, sans-serif;
+  text-align: center;
+  color: #f95851;
+  background-color: #ffeccc;
+}
+h5{
+  margin: 0%;
+}
+
+.leader-board{
+  margin-right: auto;
+  margin-left: auto;
+
+  height: 300px;
+  width: 400px;
+  font-family: Raleway, sans-serif;
+  text-align: center;
+  color: #f95851;
+  background-color: #ffeccc;
+}
+

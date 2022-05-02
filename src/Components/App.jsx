@@ -4,6 +4,7 @@ import axios from "axios";
 import CardList from './CardList.jsx';
 // import SubmitName from './SubmitName.jsx';
 import "../styles/app.css";
+import LeaderBoard from "./LeaderBoard.jsx";
 
 const App = () => {
 
@@ -74,6 +75,11 @@ const App = () => {
     if (choice2) checkMatch();
   }, [choice2]);
 
+  const [showLeaderBoard, setShowLeaderBoard] = useState(false);
+  const displayLeaderBoard = ()=>{
+    showLeaderBoard ? setShowLeaderBoard(false):setShowLeaderBoard(true)
+  }
+
   return (
     <div>
       <h1>Kanji Memory Game</h1>
@@ -84,6 +90,9 @@ const App = () => {
       <CardList cards={cards} cardClickHandler={cardClickHandler} />
 
       {cards.length > 0 && <div className="display-turns"><h2>Turns: {turns}</h2></div>}
+
+      <button className="board-btn" onClick={displayLeaderBoard}>Lead Board</button>
+      {showLeaderBoard && <LeaderBoard />}
     </div>
   );
 };
