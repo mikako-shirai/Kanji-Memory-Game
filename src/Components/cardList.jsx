@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+
 import card from './card.jsx';
 
 // export default function cardList(cards) {
