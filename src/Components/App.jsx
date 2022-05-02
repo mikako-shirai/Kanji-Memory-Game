@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import CardList from './CardList.jsx';
 // import SubmitName from './SubmitName.jsx';
-// import UserScore from "./UserScore.jsx";
 import "../styles/app.css";
 
 const App = () => {
@@ -24,12 +23,10 @@ const App = () => {
   ];
 
   const [cards, setCards] = useState([]);
-  const [flipped, setFlipped] = useState(null);
+  const [cardsFlipped, setCardsFlipped] = useState(null);
   const [choice1, setChoice1] = useState(null);
   const [choice2, setChoice2] = useState(null);
   const [turns, setTurns] = useState(0);
-
-  // const currentScore = useRef(null);
 
   const getAllCards = async () => {
     // const res = await axios.get("/kanji");
@@ -43,7 +40,7 @@ const App = () => {
   const setNewGame = async () => {
     await getAllCards();
     setTurns(0);
-    setFlipped(0);
+    setCardsFlipped(0);
   };
 
   const cardClickHandler = (card) => {
@@ -67,7 +64,7 @@ const App = () => {
     choice1.flipped = choice1.meaning === choice2.meaning;
     choice2.flipped = choice1.flipped;
 
-    if (choice1.flipped) setFlipped(flipped + 2);
+    if (choice1.flipped) setCardsFlipped(cardsFlipped + 2);
     console.log(choice1.flipped ? "MATCH" : "DIDN'T MATCH");
 
     setChoice1(null);
@@ -75,23 +72,19 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (flipped === cards.length) console.log("YOU WON");
-  }, [flipped]);
+    if (cardsFlipped === cards.length) console.log("YOU WON");
+  }, [cardsFlipped]);
 
   return (
     <div>
       <h1>Kanji Memory Game</h1>
-      <button className="new-game-btn" onClick={setNewGame}>
-        New Game
-      </button>
+      <button className="new-game-btn" onClick={setNewGame}>New Game</button>
 
-      {/* flipped === cards.length && <SubmitName /> */}
+      {/* cardsFlipped === cards.length && <SubmitName /> */}
 
-      <div className="card-display"><CardList cards={cards} cardClickHandler={cardClickHandler} /></div>
+      <CardList cards={cards} cardClickHandler={cardClickHandler} />
 
-      {cards.length > 0 && (
-        <div className="display-turns"><h2>Turns: {turns}</h2></div>
-      )}
+      {cards.length > 0 && <div className="display-turns"><h2>Turns: {turns}</h2></div>}
     </div>
   );
 };

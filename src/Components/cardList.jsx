@@ -8,7 +8,7 @@ const CardList = ({ cards, cardClickHandler }) => {
   }, [cards]);
 
   return(
-    <>
+    <div className="card-display">
       {showCards && cards.map((card, index) => {
         return (
           <ul
@@ -20,7 +20,7 @@ const CardList = ({ cards, cardClickHandler }) => {
           </ul>
         )})
       }
-    </>
+    </div>
   );
 };       
 
