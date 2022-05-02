@@ -16,6 +16,18 @@ exports.seed = async function(knex) {
     { name: "gold", meaning: "gold", flipped: false},
     { name: "金", meaning: "gold", flipped: false},
     { name: "sun", meaning: "sun", flipped: false},
-    { name: "日", meaning: "sun", flipped: false}
+    { name: "日", meaning: "sun", flipped: false},
+    { name: "mountain", meaning: "mountain", flipped: false},
+    { name: "山", meaning: "mountain", flipped: false},
+    { name: "river", meaning: "river", flipped: false},
+    { name: "川", meaning: "river", flipped: false},
+    { name: "moon", meaning: "moon", flipped: false},
+    { name: "月", meaning: "moon", flipped: false},
+    { name: "red", meaning: "red", flipped: false},
+    { name: "赤", meaning: "red", flipped: false}, 
+    { name: "blue", meaning: "blue", flipped: false},
+    { name: "青", meaning: "blue", flipped: false},
+    { name: "purple", meaning: "purple", flipped: false},
+    { name: "紫", meaning: "purple", flipped: false}
   ]);
 };
