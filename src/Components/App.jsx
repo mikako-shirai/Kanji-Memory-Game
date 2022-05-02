@@ -14,8 +14,8 @@ const App = () => {
     { name: "水", meaning: "water", flipped: false},
     { name: "earth", meaning: "earth", flipped: false},
     { name: "土", meaning: "earth", flipped: false},
-    { name: "tree", meaning: "tree", flipped: false},
-    { name: "木", meaning: "tree", flipped: false}
+    // { name: "tree", meaning: "tree", flipped: false},
+    // { name: "木", meaning: "tree", flipped: false}
   ];
 
   const [cards, setCards] = useState([]);
