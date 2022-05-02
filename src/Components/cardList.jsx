@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 
-// import Card from './Card.jsx.js';
+const CardList = ({ cards, cardClickHandler }) => {
+  const [showCards, setShowCards] = useState(false);
 
-const CardList = (cards) => {
+  useEffect(() => {
+    setShowCards(true);
+  }, [cards]);
+
   return(
-    <div className='card-grid'>
-      {cards.map(card => <div card={card} key={card.meaning}>card</div>)}
+    <div className="card-display">
+      {showCards && cards.map((card, index) => {
+        return (
+          <ul
+            className={`card${card.flipped ? "-front" : "-flipped"}`}
+            key={index}
+            onClick={() => cardClickHandler(card)}
+          >
+            {card.name}
+          </ul>
+        )})
+      }
     </div>
   );
 };       
