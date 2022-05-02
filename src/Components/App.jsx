@@ -15,11 +15,7 @@ const App = () => {
     { name: "earth", meaning: "earth", flipped: false},
     { name: "土", meaning: "earth", flipped: false},
     { name: "tree", meaning: "tree", flipped: false},
-    { name: "木", meaning: "tree", flipped: false},
-    { name: "gold", meaning: "gold", flipped: false},
-    { name: "金", meaning: "gold", flipped: false},
-    { name: "sun", meaning: "sun", flipped: false},
-    { name: "日", meaning: "sun", flipped: false}
+    { name: "木", meaning: "tree", flipped: false}
   ];
 
   const [cards, setCards] = useState([]);
@@ -93,30 +89,3 @@ const App = () => {
 };
 
 export default App;
-
-// const displayLeaderBoard = () => {
-//   return (
-//     <div>
-//       <h2>You won!</h2>
-//       <div className="leaderboard">
-//         <h2>Enter your name!</h2>
-//         <form ref={currentScore}>
-//           <UserScore label={"Name: "} name={"userName"} />
-//         </form>
-//         <button onClick={handleSubmitScore}>Submit</button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// function handleSubmitScore() {
-//   let form = currentScore.current;
-//   const userName = form.userName.value;
-//   if (!userName) return;
-
-//   const score = {
-//     name: userName,
-//     score: turns,
-//   };
-//   axios.post("/leaderboard", score);
-// }
