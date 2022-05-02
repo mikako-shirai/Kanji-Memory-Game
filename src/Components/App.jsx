@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import UserScore from "./SubmitName.jsx";
-// import CardList from './CardList.jsx';
+import CardList from './CardList.jsx';
+// import SubmitName from './SubmitName.jsx';
 import "../styles/app.css";
-import SubmitName from "./SubmitName.jsx";
 import LeaderBoard from "./LeaderBoard.jsx";
 
 const App = () => {
@@ -27,12 +26,10 @@ const App = () => {
   const [choice2, setChoice2] = useState(null);
   const [turns, setTurns] = useState(0);
 
-  const [showLeadBoard, setShowLeadBoard] = useState(false);
-  const displayLeadBoard = () => {
-    setShowLeadBoard(true);
-  };
-
-  const currentScore = useRef(null);
+  const getAllCards = async () => {
+    // const res = await axios.get("/kanji");
+    // const allCards = res.data;
+    const allCards = kanjiSamples;
 
     const shuffledCards = allCards.sort(() => 0.5 - Math.random());
     setCards(shuffledCards);
@@ -78,6 +75,11 @@ const App = () => {
     if (choice2) checkMatch();
   }, [choice2]);
 
+  const [showLeaderBoard, setShowLeaderBoard] = useState(false);
+  const displayLeaderBoard = ()=>{
+    showLeaderBoard ? setShowLeaderBoard(false):setShowLeaderBoard(true)
+  }
+
   return (
     <div>
       <h1>Kanji Memory Game</h1>
@@ -87,14 +89,12 @@ const App = () => {
 
       <CardList cards={cards} cardClickHandler={cardClickHandler} />
 
-      {cards.length > 0 && (
-        <div className="display-turns">{displayTurns()}</div>
-      )}
+      {cards.length > 0 && <div className="display-turns"><h2>Turns: {turns}</h2></div>}
 
-
-      <button className="board-btn" 
-      >Lead Board</button>
+      <button className="board-btn" onClick={displayLeaderBoard}>Lead Board</button>
+      {showLeaderBoard && <LeaderBoard />}
     </div>
   );
+};
 
 export default App;

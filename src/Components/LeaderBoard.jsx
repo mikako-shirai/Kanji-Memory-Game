@@ -24,8 +24,8 @@ function LeaderBoard() {
         </thead>
         <tbody>
           <tr>
-            {sampleUsers.map((el)=>
-            <div className="lanking">
+            {sampleUsers.map((el, key)=>
+            <div className="lanking" key ={key}>
               <td className="user-name">{el.name}</td>
               <td className="user-score">{el.score}</td>
             </div>
@@ -33,7 +33,6 @@ function LeaderBoard() {
           </tr>
         </tbody>
       </table>
-      <>~add go back~</>
     </div>
   );
 }
