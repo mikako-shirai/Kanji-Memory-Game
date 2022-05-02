@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import UserScore from "./SubmitName.jsx";
@@ -8,8 +8,25 @@ import SubmitName from "./SubmitName.jsx";
 import LeaderBoard from "./LeaderBoard.jsx";
 
 const App = () => {
+
+  const kanjiSamples = [
+    { name: "fire", meaning: "fire", flipped: false},
+    { name: "火", meaning: "fire", flipped: false},
+    { name: "water", meaning: "water", flipped: false},
+    { name: "水", meaning: "water", flipped: false},
+    { name: "earth", meaning: "earth", flipped: false},
+    { name: "土", meaning: "earth", flipped: false},
+    { name: "tree", meaning: "tree", flipped: false},
+    { name: "木", meaning: "tree", flipped: false},
+    { name: "gold", meaning: "gold", flipped: false},
+    { name: "金", meaning: "gold", flipped: false},
+    { name: "sun", meaning: "sun", flipped: false},
+    { name: "日", meaning: "sun", flipped: false}
+  ];
+
   const [cards, setCards] = useState([]);
-  const [flipped, setFlipped] = useState(null);
+  const [cardsFlipped, setCardsFlipped] = useState(null);
+  const [currentCard, setCurrentCard] = useState(null);
   const [choice1, setChoice1] = useState(null);
   const [choice2, setChoice2] = useState(null);
   const [turns, setTurns] = useState(0);
@@ -21,122 +38,58 @@ const App = () => {
 
   const currentScore = useRef(null);
 
-  const getCardsAndShuffle = async () => {
-    const res = await axios.get("/kanji");
-    const cards = res.data;
-    const shuffledCards = cards.sort(() => 0.5 - Math.random());
+    const shuffledCards = allCards.sort(() => 0.5 - Math.random());
     setCards(shuffledCards);
+  };
+
+  const setNewGame = async () => {
+    await getAllCards();
     setTurns(0);
-    setFlipped(0);
-
-    displayCards(cards);
+    setCardsFlipped(0);
   };
 
-  const displayCards = (cards) => {
-    return cards.map((card) => {
-      return (
-        <ul
-          className={`card${card.flipped === true ? "-front" : "-flipped"}`}
-          key={card.id}
-          onClick={() => handleClick(card)}
-        >
-          {card.name}
-        </ul>
-      );
-    });
+  const cardClickHandler = (card) => {
+    card.flipped = true;
+    setTurns(turns + 1);
+    setCurrentCard(card);
+    setChoices();
   };
 
-  const displayTurns = () => <h2>Turns: {turns}</h2>;
+  const setChoices = () => {
+    if (!choice1) {
+      setChoice1(currentCard);
+    } else {
+      setChoice2(currentCard);
+    }
+  };
 
   const checkMatch = () => {
-    if (choice1 && choice2) {
-      if (choice1.meaning === choice2.meaning) {
-        choice1.flipped = true;
-        choice2.flipped = true;
+    choice1.flipped = choice1.meaning === choice2.meaning;
+    choice2.flipped = choice1.flipped;
 
-        setChoice1(null);
-        setChoice2(null);
-        setTurns(turns + 1);
-        setFlipped(flipped + 2);
-        console.log("MATCH");
-      } else {
-        setTimeout(() => {
-          choice1.flipped = false;
-          choice2.flipped = false;
-          setTurns(turns + 1);
-          setChoice1(null);
-          setChoice2(null);
-        }, "800");
-        console.log("DIDN'T MATCH");
-      }
-    }
+    if (choice1.flipped) setCardsFlipped(cardsFlipped + 2);
+    console.log(choice1.flipped ? "MATCH" : "DIDN'T MATCH");
+
+    setChoice1(null);
+    setChoice2(null);
   };
-
-  const setChoices = (card) => {
-    if (!choice1 || !choice2) {
-      if (!choice1) {
-        setChoice1(card);
-      } else {
-        setChoice2(card);
-      }
-    }
-  };
-
-  const handleClick = (card) => {
-    if (!card.flipped) {
-      card.flipped = true;
-      setChoices(card);
-    }
-  };
-
-  const displayLeaderBoard = () => {
-    return (
-      <div>
-        <h2>You won!</h2>
-        <div className="leaderboard">
-          <h2>Enter your name!</h2>
-          <form ref={currentScore}>
-            <UserScore label={"Name: "} name={"userName"} />
-          </form>
-          <button onClick={handleSubmitScore}>Submit</button>
-        </div>
-      </div>
-    );
-  };
-
-  function handleSubmitScore() {
-    let form = currentScore.current;
-    const userName = form["userName"].value;
-
-    if (userName) {
-      const score = {
-        name: userName,
-        score: turns,
-      };
-      axios.post("/leaderboard", score);
-    }
-  }
 
   useEffect(() => {
-    checkMatch();
-  }, [choice1, choice2]);
+    if (cardsFlipped === cards.length) console.log("YOU WON");
+  }, [cardsFlipped]);
 
   useEffect(() => {
-    if (flipped === cards.length) {
-      console.log("YOU WON");
-    }
-  }, [flipped]);
+    if (choice2) checkMatch();
+  }, [choice2]);
 
   return (
     <div>
       <h1>Kanji Memory Game</h1>
-      <button className="new-game-btn" onClick={getCardsAndShuffle}>
-        New Game
-      </button>
+      <button className="new-game-btn" onClick={setNewGame}>New Game</button>
 
-      {flipped === cards.length && displayLeaderBoard()}
+      {/* cardsFlipped === cards.length && <SubmitName /> */}
 
-      <div className="card-display">{displayCards(cards)}</div>
+      <CardList cards={cards} cardClickHandler={cardClickHandler} />
 
       {cards.length > 0 && (
         <div className="display-turns">{displayTurns()}</div>
@@ -147,6 +100,32 @@ const App = () => {
       >Lead Board</button>
     </div>
   );
-};
 
 export default App;
+
+// const displayLeaderBoard = () => {
+//   return (
+//     <div>
+//       <h2>You won!</h2>
+//       <div className="leaderboard">
+//         <h2>Enter your name!</h2>
+//         <form ref={currentScore}>
+//           <UserScore label={"Name: "} name={"userName"} />
+//         </form>
+//         <button onClick={handleSubmitScore}>Submit</button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// function handleSubmitScore() {
+//   let form = currentScore.current;
+//   const userName = form.userName.value;
+//   if (!userName) return;
+
+//   const score = {
+//     name: userName,
+//     score: turns,
+//   };
+//   axios.post("/leaderboard", score);
+// }
