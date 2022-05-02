@@ -4,7 +4,7 @@ import axios from "axios";
 import UserScore from "./UserScore.jsx";
 // import CardList from './CardList.jsx';
 import "../styles/app.css";
-import Leaderboard from "./LeaderBoard.jsx";
+import LeaderBoard from "./LeaderBoard.jsx";
 
 const App = () => {
   const [cards, setCards] = useState([]);
@@ -124,6 +124,7 @@ const App = () => {
   return (
     <div>
       <h1>Kanji Memory Game</h1>
+      <LeaderBoard />
       <button className="new-game-btn" onClick={getCardsAndShuffle}>
         New Game
       </button>

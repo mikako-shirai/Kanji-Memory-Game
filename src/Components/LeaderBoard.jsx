@@ -4,8 +4,9 @@ function Leaderboard() {
 
   return (
     <div className="leader-board">
-      <div className="user-name">user name</div>
-      <div className="score">score</div>
+      <div className="score"></div>
+      <h3>You won!</h3>
+      <h2>Enter your name!</h2> 
     </div>
   );
 }
