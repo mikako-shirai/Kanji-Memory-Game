@@ -12,7 +12,7 @@ const App = () => {
   const [choice2, setChoice2] = useState(null);
   const [turns, setTurns] = useState(0);
 
-  const userScore = useRef(null);
+  const currentScore = useRef(null);
 
   const getCardsAndShuffle = async () => {
     const res = await axios.get("/kanji");
@@ -88,7 +88,7 @@ const App = () => {
         <h2>You won!</h2>
         <div className="leaderboard">
           <h2>Enter your name!</h2>
-          <form ref={userScore}>
+          <form ref={currentScore}>
             <UserScore label={"Name: "} name={"userName"} />
           </form>
           <button onClick={handleSubmitScore}>Submit</button>
@@ -98,7 +98,7 @@ const App = () => {
   };
 
   function handleSubmitScore() {
-    let form = userScore.current;
+    let form = currentScore.current;
     const userName = form["userName"].value;
 
     if (userName) {
