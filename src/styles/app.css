@@ -72,14 +72,30 @@ body {
 }
 
 
-.leader-board {
+.score-board {
   margin-right: auto;
   margin-left: auto;
 
-  height: 100px;
+  height: 300px;
   width: 400px;
   font-family: Raleway, sans-serif;
   text-align: center;
   color: #f95851;
   background-color: #ffeccc;
 }
+h5{
+  margin: 0%;
+}
+
+.leader-board{
+  margin-right: auto;
+  margin-left: auto;
+
+  height: 300px;
+  width: 400px;
+  font-family: Raleway, sans-serif;
+  text-align: center;
+  color: #f95851;
+  background-color: #ffeccc;
+}
+

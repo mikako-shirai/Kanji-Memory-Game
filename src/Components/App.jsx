@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
-import UserScore from "./UserScore.jsx";
+import UserScore from "./SubmitName.jsx";
 // import CardList from './CardList.jsx';
 import "../styles/app.css";
+import SubmitName from "./SubmitName.jsx";
 import LeaderBoard from "./LeaderBoard.jsx";
 
 const App = () => {
@@ -124,7 +125,6 @@ const App = () => {
   return (
     <div>
       <h1>Kanji Memory Game</h1>
-      <LeaderBoard />
       <button className="new-game-btn" onClick={getCardsAndShuffle}>
         New Game
       </button>
