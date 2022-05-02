@@ -71,6 +71,21 @@ body {
   background: #f95851;
 }
 
+.board-btn {
+  margin-top: 20px;
+  color: #fff;
+  background: none;
+  border: 2px solid #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.5em;
+}
+.board-btn:hover {
+  color: #fff;
+  background: #f95851;
+}
 
 .score-board {
   margin-right: auto;

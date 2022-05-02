@@ -14,6 +14,11 @@ const App = () => {
   const [choice2, setChoice2] = useState(null);
   const [turns, setTurns] = useState(0);
 
+  const [showLeadBoard, setShowLeadBoard] = useState(false);
+  const displayLeadBoard = () => {
+    setShowLeadBoard(true);
+  };
+
   const currentScore = useRef(null);
 
   const getCardsAndShuffle = async () => {
@@ -136,6 +141,10 @@ const App = () => {
       {cards.length > 0 && (
         <div className="display-turns">{displayTurns()}</div>
       )}
+
+
+      <button className="board-btn" 
+      >Lead Board</button>
     </div>
   );
 };
