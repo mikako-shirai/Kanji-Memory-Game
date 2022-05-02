@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-const axios = require("axios");
+import axios from "axios";
 
 import UserScore from "./UserScore.jsx";
-// import cardList from './cardlist.jsx';
+// import CardList from './CardList.jsx';
 import "../styles/app.css";
 
-export default function App() {
+const App = () => {
   const [cards, setCards] = useState([]);
   const [flipped, setFlipped] = useState(null);
   const [choice1, setChoice1] = useState(null);
@@ -136,4 +136,6 @@ export default function App() {
       )}
     </div>
   );
-}
+};
+
+export default App;

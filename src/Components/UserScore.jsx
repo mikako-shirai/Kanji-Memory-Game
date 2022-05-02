@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function InputField({ name, label }) {
+const UserScore = ({ name, label }) => {
   const [state, setState] = useState("");
   return (
     <div>
@@ -13,4 +13,6 @@ export default function InputField({ name, label }) {
       />
     </div>
   );
-}
+};
+
+export default UserScore;
