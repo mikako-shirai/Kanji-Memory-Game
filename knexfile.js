@@ -1,14 +1,14 @@
 require("dotenv").config({
   path: "./.env.local",
 });
-const pg = require("pg"); 
-  /**
-   * @type { Object.<string, import("knex").Knex.Config> }
-   */
+const pg = require("pg");
+/**
+ * @type { Object.<string, import("knex").Knex.Config> }
+ */
 
 module.exports = {
   development: {
-    client: 'pg',
+    client: "pg",
     connection: {
       host: process.env.HOST,
       database: process.env.DB_NAME,
@@ -16,21 +16,19 @@ module.exports = {
       password: process.env.DB_PASSWORD,
     },
     migrations: {
-      directory: './db/migrations',
+      directory: "./db/migrations",
     },
-    seeds: { directory: './db/seeds' },
+    seeds: { directory: "./db/seeds" },
   },
   production: {
-    client: 'pg',
-    connection:  process.env.DATABASE_URL,
+    client: "pg",
+    connection: process.env.DATABASE_URL,
     ssl: {
-      rejectUnauthorised: false
+      rejectUnauthorised: false,
     },
     migrations: {
-      directory: './db/migrations',
+      directory: "./db/migrations",
     },
-    seeds: { directory: './db/seeds' }
+    seeds: { directory: "./db/seeds" },
   },
 };
-
-
