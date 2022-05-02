@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
-import UserScore from "./UserScore.jsx";
 import CardList from './CardList.jsx';
+// import SubmitName from './SubmitName.jsx';
+// import UserScore from "./UserScore.jsx";
 import "../styles/app.css";
 
 const App = () => {
@@ -12,7 +13,7 @@ const App = () => {
   const [choice2, setChoice2] = useState(null);
   const [turns, setTurns] = useState(0);
 
-  const currentScore = useRef(null);
+  // const currentScore = useRef(null);
 
   const getAllCards = async () => {
     const res = await axios.get("/kanji");
@@ -54,34 +55,6 @@ const App = () => {
     setChoice2(null);
   };
 
-  const displayLeaderBoard = () => {
-    return (
-      <div>
-        <h2>You won!</h2>
-        <div className="leaderboard">
-          <h2>Enter your name!</h2>
-          <form ref={currentScore}>
-            <UserScore label={"Name: "} name={"userName"} />
-          </form>
-          <button onClick={handleSubmitScore}>Submit</button>
-        </div>
-      </div>
-    );
-  };
-
-  function handleSubmitScore() {
-    let form = currentScore.current;
-    const userName = form["userName"].value;
-
-    if (userName) {
-      const score = {
-        name: userName,
-        score: turns,
-      };
-      axios.post("/leaderboard", score);
-    }
-  }
-
   useEffect(() => {
     if (flipped === cards.length) console.log("YOU WON");
   }, [flipped]);
@@ -96,7 +69,7 @@ const App = () => {
         New Game
       </button>
 
-      {flipped === cards.length && displayLeaderBoard()}
+      {/* flipped === cards.length && <SubmitName /> */}
 
       <div className="card-display"><CardList cards={cards} cardClickHandler={cardClickHandler} /></div>
 
@@ -108,3 +81,30 @@ const App = () => {
 };
 
 export default App;
+
+// const displayLeaderBoard = () => {
+//   return (
+//     <div>
+//       <h2>You won!</h2>
+//       <div className="leaderboard">
+//         <h2>Enter your name!</h2>
+//         <form ref={currentScore}>
+//           <UserScore label={"Name: "} name={"userName"} />
+//         </form>
+//         <button onClick={handleSubmitScore}>Submit</button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// function handleSubmitScore() {
+//   let form = currentScore.current;
+//   const userName = form.userName.value;
+//   if (!userName) return;
+
+//   const score = {
+//     name: userName,
+//     score: turns,
+//   };
+//   axios.post("/leaderboard", score);
+// }
