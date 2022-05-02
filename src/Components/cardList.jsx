@@ -1,12 +1,13 @@
 import React from 'react';
 
-import card from './card.jsx';
+import card from './card.jsx.js';
 
-// export default function cardList(cards) {
-//     return(
-//         <div className='card-grid'>
-//             {cards.map(card => {return <div card={card} key={card.meaning}>card<div/>}}
-                
-                
-            
-//  }       
+const CardList = (cards) => {
+  return(
+    <div className='card-grid'>
+      {cards.map(card => <div card={card} key={card.meaning}>card</div>)}
+    </div>
+  );
+};       
+
+ export default CardList;

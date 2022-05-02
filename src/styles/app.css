@@ -1,6 +1,12 @@
 body {
-  background-color: #3b4954;
+  font-family: Raleway, sans-serif;
+  margin: 0;
+  font-size: 1.6em;
+  text-align: center;
+  background: #3b4954;
+  color: #fff;
 }
+
 .card-display {
   margin-top: 5vh;
   display: grid;
