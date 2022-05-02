@@ -63,3 +63,16 @@ body {
   background: #f95851;
   color: #fff;
 }
+
+
+.leader-board {
+  margin-right: auto;
+  margin-left: auto;
+
+  height: 100px;
+  width: 400px;
+  font-family: Raleway, sans-serif;
+  text-align: center;
+  color: #f95851;
+  background-color: #ffeccc;
+}

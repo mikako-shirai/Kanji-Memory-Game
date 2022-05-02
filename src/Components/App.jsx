@@ -4,6 +4,7 @@ const axios = require("axios");
 import UserScore from "./UserScore.jsx";
 // import cardList from './cardlist.jsx';
 import "../styles/app.css";
+import Leaderboard from "./LeaderBoard.jsx";
 
 export default function App() {
   const [cards, setCards] = useState([]);
