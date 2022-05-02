@@ -24,6 +24,7 @@ const App = () => {
 
   const [cards, setCards] = useState([]);
   const [cardsFlipped, setCardsFlipped] = useState(null);
+  const [currentCard, setCurrentCard] = useState(null);
   const [choice1, setChoice1] = useState(null);
   const [choice2, setChoice2] = useState(null);
   const [turns, setTurns] = useState(0);
@@ -44,19 +45,17 @@ const App = () => {
   };
 
   const cardClickHandler = (card) => {
-    if (!card.flipped) {
-      card.flipped = true;
-      setTurns(turns + 1);
-      setChoices(card);
-    }
+    card.flipped = true;
+    setTurns(turns + 1);
+    setCurrentCard(card);
+    setChoices();
   };
 
-  const setChoices = (card) => {
+  const setChoices = () => {
     if (!choice1) {
-      setChoice1(card);
+      setChoice1(currentCard);
     } else {
-      setChoice2(card);
-      checkMatch();
+      setChoice2(currentCard);
     }
   };
 
@@ -74,6 +73,10 @@ const App = () => {
   useEffect(() => {
     if (cardsFlipped === cards.length) console.log("YOU WON");
   }, [cardsFlipped]);
+
+  useEffect(() => {
+    if (choice2) checkMatch();
+  }, [choice2]);
 
   return (
     <div>
