@@ -7,6 +7,22 @@ import CardList from './CardList.jsx';
 import "../styles/app.css";
 
 const App = () => {
+
+  const kanjiSamples = [
+    { name: "fire", meaning: "fire", flipped: false},
+    { name: "火", meaning: "fire", flipped: false},
+    { name: "water", meaning: "water", flipped: false},
+    { name: "水", meaning: "water", flipped: false},
+    { name: "earth", meaning: "earth", flipped: false},
+    { name: "土", meaning: "earth", flipped: false},
+    { name: "tree", meaning: "tree", flipped: false},
+    { name: "木", meaning: "tree", flipped: false},
+    { name: "gold", meaning: "gold", flipped: false},
+    { name: "金", meaning: "gold", flipped: false},
+    { name: "sun", meaning: "sun", flipped: false},
+    { name: "日", meaning: "sun", flipped: false}
+  ];
+
   const [cards, setCards] = useState([]);
   const [flipped, setFlipped] = useState(null);
   const [choice1, setChoice1] = useState(null);
@@ -16,13 +32,16 @@ const App = () => {
   // const currentScore = useRef(null);
 
   const getAllCards = async () => {
-    const res = await axios.get("/kanji");
-    const allCards = res.data;
+    // const res = await axios.get("/kanji");
+    // const allCards = res.data;
+    const allCards = kanjiSamples;
+
     const shuffledCards = allCards.sort(() => 0.5 - Math.random());
     setCards(shuffledCards);
   };
 
   const setNewGame = async () => {
+    await getAllCards();
     setTurns(0);
     setFlipped(0);
   };
@@ -46,7 +65,7 @@ const App = () => {
 
   const checkMatch = () => {
     choice1.flipped = choice1.meaning === choice2.meaning;
-    choice2.flipped = choice1.meaning === choice2.meaning;
+    choice2.flipped = choice1.flipped;
 
     if (choice1.flipped) setFlipped(flipped + 2);
     console.log(choice1.flipped ? "MATCH" : "DIDN'T MATCH");
@@ -62,10 +81,7 @@ const App = () => {
   return (
     <div>
       <h1>Kanji Memory Game</h1>
-      <button className="new-game-btn" onClick={() => {
-        getAllCards();
-        setNewGame();
-      }}>
+      <button className="new-game-btn" onClick={setNewGame}>
         New Game
       </button>
 

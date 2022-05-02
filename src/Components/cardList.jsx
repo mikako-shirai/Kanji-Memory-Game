@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-// import Card from './Card.jsx.js';
-
 const CardList = ({ cards, cardClickHandler }) => {
   const [showCards, setShowCards] = useState(false);
 
@@ -10,25 +8,19 @@ const CardList = ({ cards, cardClickHandler }) => {
   }, [cards]);
 
   return(
-    <div className='card-grid'>
-      {showCards && cards.map((card) => {
+    <>
+      {showCards && cards.map((card, index) => {
         return (
           <ul
             className={`card${card.flipped ? "-front" : "-flipped"}`}
-            key={card.id}
+            key={index}
             onClick={() => cardClickHandler(card)}
           >
             {card.name}
           </ul>
         )})
       }
-    </div>
-
-
-
-    // <div className='card-grid'>
-    //   {cards.map(card => <div card={card} key={card.meaning}>card</div>)}
-    // </div>
+    </>
   );
 };       
 
