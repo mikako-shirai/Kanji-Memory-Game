@@ -1,9 +1,9 @@
-import UserScore from "./UserScore.jsx";
-import "../styles/app.css";
-// import CardList from './CardList.jsx';
-
 import { useState, useEffect, useRef } from "react";
-const axios = require("axios");
+import axios from "axios";
+
+import UserScore from "./UserScore.jsx";
+// import CardList from './CardList.jsx';
+import "../styles/app.css";
 
 const App = () => {
   const [cards, setCards] = useState([]);
