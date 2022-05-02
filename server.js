@@ -1,12 +1,13 @@
 const express = require("express");
 const knex = require("knex");
 const app = express();
-const cors = require('cors');
-const path = require('path');
+const cors = require("cors");
+const path = require("path");
 require("dotenv").config({
   path: "./.env.local",
 });
-const environment = process.env.NODE_ENV;
+const environment = process.env.NODE_ENV ? "development" : "production";
+
 const config = require("./knexfile");
 const db = knex(config[environment]);
 
@@ -17,10 +18,9 @@ app.use(express.static(path.join(__dirname, "build")));
 
 app.use(cors());
 
-
 app.get("/kanji", async (req, res) => {
   try {
-    let allKanji = await db.select("*").from("kanji");
+    let allKanji = await db.select("").from("kanji");
     res.send(allKanji).status(200);
   } catch (err) {
     console.log(err);
@@ -29,7 +29,7 @@ app.get("/kanji", async (req, res) => {
 
 app.get("/leaderboard", async (req, res) => {
   try {
-    let allLeaderboard = await db.select("*").from("leaderboard");
+    let allLeaderboard = await db.select("").from("leaderboard");
     res.send(allLeaderboard).status(200);
   } catch (err) {
     console.log(err);
