@@ -1,7 +1,7 @@
 import React, { useState }  from "react";
 import axios from "axios";
 
-function SubmitName({ name, label ,turns}) {
+const SubmitName = ({ name, label ,turns }) => {
 
   const [state, setState] = useState("");
 
@@ -35,6 +35,6 @@ function SubmitName({ name, label ,turns}) {
       </div>
     </div>
   );
-}
+};
 
 export default SubmitName;
