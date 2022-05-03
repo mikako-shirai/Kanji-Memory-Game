@@ -90,7 +90,7 @@ const App = () => {
 
       {cards.length > 0 && <div className="display-turns"><h2>Turns: {turns}</h2></div>}
 
-      <button className="board-btn" onClick={displayLeaderBoard}>Lead Board</button>
+      <button className="board-btn" onClick={displayLeaderBoard}>Leader Board</button>
       {showLeaderBoard && <LeaderBoard />}
     </div>
   );

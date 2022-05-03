@@ -18,7 +18,7 @@ function LeaderBoard (){
 
   return (
     <div className="leader-board">
-      <div>leader board</div>
+      <div>Leader Board</div>
         {users.map((user, key)=>
         (<div className="lanking" key ={key}>
           <div className="user-name">{user.name}</div>
