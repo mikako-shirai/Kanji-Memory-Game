@@ -3,32 +3,21 @@ import axios from "axios";
 
 import CardList from './CardList.jsx';
 import SubmitName from './SubmitName.jsx';
-import "../styles/app.css";
 import LeaderBoard from "./LeaderBoard.jsx";
+import "../styles/app.css";
 
 const App = () => {
-  // const kanjiSamples = [
-  //   { name: "fire", meaning: "fire", flipped: false},
-  //   { name: "火", meaning: "fire", flipped: false},
-  //   { name: "water", meaning: "water", flipped: false},
-  //   { name: "水", meaning: "water", flipped: false},
-  //   { name: "earth", meaning: "earth", flipped: false},
-  //   { name: "土", meaning: "earth", flipped: false},
-  //   { name: "tree", meaning: "tree", flipped: false},
-  //   { name: "木", meaning: "tree", flipped: false}
-  // ];
-
   const [cards, setCards] = useState([]);
   const [cardsFlipped, setCardsFlipped] = useState(null);
   const [currentCard, setCurrentCard] = useState(null);
   const [choice1, setChoice1] = useState(null);
   const [choice2, setChoice2] = useState(null);
   const [turns, setTurns] = useState(0);
+  const [showLeaderBoard, setShowLeaderBoard] = useState(false);
 
   const getAllCards = async () => {
     const res = await axios.get("/kanji");
     const allCards = res.data;
-    // const allCards = kanjiSamples;
 
     const shuffledCards = allCards.sort(() => 0.5 - Math.random());
     setCards(shuffledCards);
@@ -66,6 +55,10 @@ const App = () => {
     setChoice2(null);
   };
 
+  const displayLeaderBoard = ()=>{
+    showLeaderBoard ? setShowLeaderBoard(false) : setShowLeaderBoard(true);
+  }
+
   useEffect(() => {
     if (cardsFlipped === cards.length) console.log("YOU WON");
   }, [cardsFlipped]);
@@ -73,11 +66,6 @@ const App = () => {
   useEffect(() => {
     if (choice2) checkMatch();
   }, [choice2]);
-
-  const [showLeaderBoard, setShowLeaderBoard] = useState(false);
-  const displayLeaderBoard = ()=>{
-    showLeaderBoard ? setShowLeaderBoard(false):setShowLeaderBoard(true)
-  }
 
   return (
     <div>

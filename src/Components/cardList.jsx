@@ -24,4 +24,4 @@ const CardList = ({ cards, cardClickHandler }) => {
   );
 };       
 
- export default CardList;
+export default CardList;
