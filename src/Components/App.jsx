@@ -2,22 +2,21 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import CardList from './CardList.jsx';
-// import SubmitName from './SubmitName.jsx';
+import SubmitName from './SubmitName.jsx';
 import "../styles/app.css";
 import LeaderBoard from "./LeaderBoard.jsx";
 
 const App = () => {
-
-  const kanjiSamples = [
-    { name: "fire", meaning: "fire", flipped: false},
-    { name: "火", meaning: "fire", flipped: false},
-    { name: "water", meaning: "water", flipped: false},
-    { name: "水", meaning: "water", flipped: false},
-    { name: "earth", meaning: "earth", flipped: false},
-    { name: "土", meaning: "earth", flipped: false},
-    // { name: "tree", meaning: "tree", flipped: false},
-    // { name: "木", meaning: "tree", flipped: false}
-  ];
+  // const kanjiSamples = [
+  //   { name: "fire", meaning: "fire", flipped: false},
+  //   { name: "火", meaning: "fire", flipped: false},
+  //   { name: "water", meaning: "water", flipped: false},
+  //   { name: "水", meaning: "water", flipped: false},
+  //   { name: "earth", meaning: "earth", flipped: false},
+  //   { name: "土", meaning: "earth", flipped: false},
+  //   { name: "tree", meaning: "tree", flipped: false},
+  //   { name: "木", meaning: "tree", flipped: false}
+  // ];
 
   const [cards, setCards] = useState([]);
   const [cardsFlipped, setCardsFlipped] = useState(null);
@@ -27,9 +26,9 @@ const App = () => {
   const [turns, setTurns] = useState(0);
 
   const getAllCards = async () => {
-    // const res = await axios.get("/kanji");
-    // const allCards = res.data;
-    const allCards = kanjiSamples;
+    const res = await axios.get("/kanji");
+    const allCards = res.data;
+    // const allCards = kanjiSamples;
 
     const shuffledCards = allCards.sort(() => 0.5 - Math.random());
     setCards(shuffledCards);
@@ -85,7 +84,7 @@ const App = () => {
       <h1>Kanji Memory Game</h1>
       <button className="new-game-btn" onClick={setNewGame}>New Game</button>
 
-      {/* cardsFlipped === cards.length && <SubmitName /> */}
+      {cardsFlipped === cards.length && <SubmitName />}
 
       <CardList cards={cards} cardClickHandler={cardClickHandler} />
 
