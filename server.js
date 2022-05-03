@@ -9,7 +9,7 @@ require("dotenv").config({
 const environment = process.env.NODE_ENV ? "production" : "development";
 
 const config = require("./knexfile");
-console.log(config)
+console.log(config);
 //console.log(config[environment])
 const db = knex(config[environment]);
 const port = process.env.PORT || 8080;
@@ -19,14 +19,13 @@ app.use(express.static(path.join(__dirname, "build")));
 
 app.use(cors());
 
-
 app.get("/a", (req, res) => {
   res.send("hiii").status(200);
-})
+});
 app.get("/kanji", async (req, res) => {
   try {
-    let allKanji = await db.select('*').from('kanji');
-    console.log(allKanji)
+    let allKanji = await db.select("*").from("kanji");
+    console.log(allKanji);
     res.send(allKanji).status(200);
   } catch (err) {
     console.log(err);
