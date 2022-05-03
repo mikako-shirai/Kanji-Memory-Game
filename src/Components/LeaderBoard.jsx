@@ -8,9 +8,10 @@ function LeaderBoard (){
   const getLeaderBoard = async ()=>{
     const res = await axios.get("/leaderboard");
     const leadUsers = res.data;
-    setUsers(leadUsers)
-
-  }
+    const sortedUser = leadUsers.sort((a, b)=>b.score - a.score)
+    
+    setUsers(sortedUser)
+  };
 
   useEffect(() => {
     getLeaderBoard();
@@ -18,10 +19,10 @@ function LeaderBoard (){
 
   return (
     <div className="leader-board">
-      <div>leader board</div>
+      <div>Leader Board</div>
         {users.map((user, key)=>
         (<div className="lanking" key ={key}>
-          <div className="user-name">{user.name}</div>
+          <div className="user-name">&#128081;{user.name}</div>
           <div className="user-score">score:{user.score}</div>
         </div>)
         )}
