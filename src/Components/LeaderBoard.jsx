@@ -1,16 +1,15 @@
 import React,{ useState, useEffect } from "react";
 import axios from "axios";
 
-function LeaderBoard (){
-
+const LeaderBoard = () => {
   const [users, setUsers] = useState([]);
 
   const getLeaderBoard = async ()=>{
     const res = await axios.get("/leaderboard");
     const leadUsers = res.data;
-    const sortedUser = leadUsers.sort((a, b)=>b.score - a.score)
+    const sortedUser = leadUsers.sort((a, b) => b.score - a.score)
     
-    setUsers(sortedUser)
+    setUsers(sortedUser);
   };
 
   useEffect(() => {
@@ -27,7 +26,7 @@ function LeaderBoard (){
         </div>)
         )}
     </div>
-  )
+  );
 };
 
 export default LeaderBoard;
