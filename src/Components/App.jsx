@@ -89,9 +89,7 @@ const App = () => {
         </div>
       )}
 
-
       <button className="board-btn" onClick={displayLeaderBoard}>Leader Board</button>
-
       {showLeaderBoard && <LeaderBoard />}
     </div>
   );
