@@ -16,7 +16,7 @@ const SubmitName = ({ turns, setShowSubmitName }) => {
   };
 
   return (
-    <div className="score-board">
+    <div className="submit-name">
       <h5>You won!</h5>
       <h5>Enter your name!</h5> 
       <input
