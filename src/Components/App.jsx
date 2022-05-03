@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import CardList from './CardList.jsx';
+import CardList from './cardList.jsx';
 import SubmitName from './SubmitName.jsx';
 import LeaderBoard from "./LeaderBoard.jsx";
 import "../styles/app.css";
