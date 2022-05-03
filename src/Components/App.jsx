@@ -40,14 +40,22 @@ const App = () => {
     turns % 2 === 1 ? setChoice1(card) : setChoice2(card);
   };
 
-  const checkMatch = () => {
+  const checkMatch = async () => {
     if (choice1.id && choice2.id) {
-      choice1.flipped = choice1.meaning === choice2.meaning;
-      choice2.flipped = choice1.flipped;
-      if (choice1.flipped) setCardsFlipped(cardsFlipped + 2);
-
-      setChoice1({});
-      setChoice2({});
+      if (choice1.meaning === choice2.meaning) {
+        choice1.flipped = true;
+        choice2.flipped = true;
+        setCardsFlipped(cardsFlipped + 2)
+        setChoice1({});
+        setChoice2({});
+      } else {
+        setTimeout(() => {
+          choice1.flipped = false;
+          choice2.flipped = false;
+          setChoice1({});
+          setChoice2({});
+        }, "600");
+      }
     }
   };
 
