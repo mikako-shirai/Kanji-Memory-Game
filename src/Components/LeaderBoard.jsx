@@ -4,7 +4,7 @@ import axios from "axios";
 const LeaderBoard = () => {
   const [users, setUsers] = useState([]);
 
-  const getLeaderBoard = async ()=>{
+  const getLeaderBoard = async () => {
     const res = await axios.get("/leaderboard");
     const leadUsers = res.data;
     const sortedUser = leadUsers.sort((a, b) => b.score - a.score)
