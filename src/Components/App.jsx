@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import CardList from './cardList.jsx';
-import SubmitName from './SubmitName.jsx';
+import CardList from "./CardList.jsx";
+import SubmitName from "./SubmitName.jsx";
 import LeaderBoard from "./LeaderBoard.jsx";
 import "../styles/app.css";
 
@@ -58,9 +58,9 @@ const App = () => {
     setChoice2(null);
   };
 
-  const displayLeaderBoard = ()=>{
+  const displayLeaderBoard = () => {
     showLeaderBoard ? setShowLeaderBoard(false) : setShowLeaderBoard(true);
-  }
+  };
 
   useEffect(() => {
     if (cardsFlipped === cards.length) console.log("YOU WON");
@@ -73,15 +73,23 @@ const App = () => {
   return (
     <div>
       <h1>Kanji Memory Game</h1>
-      <button className="new-game-btn" onClick={setNewGame}>New Game</button>
+      <button className="new-game-btn" onClick={setNewGame}>
+        New Game
+      </button>
 
       {cardsFlipped === cards.length && <SubmitName />}
 
       <CardList cards={cards} cardClickHandler={cardClickHandler} />
 
-      {cards.length > 0 && <div className="display-turns"><h2>Turns: {turns}</h2></div>}
+      {cards.length > 0 && (
+        <div className="display-turns">
+          <h2>Turns: {turns}</h2>
+        </div>
+      )}
 
-      <button className="board-btn" onClick={displayLeaderBoard}>Lead Board</button>
+      <button className="board-btn" onClick={displayLeaderBoard}>
+        Lead Board
+      </button>
       {showLeaderBoard && <LeaderBoard />}
     </div>
   );
