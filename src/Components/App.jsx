@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import CardList from "./CardList.jsx";
-import SubmitName from "./SubmitName.jsx";
+
+import CardList from './CardList.jsx';
+import SubmitName from './SubmitName.jsx';
+
 import LeaderBoard from "./LeaderBoard.jsx";
 import "../styles/app.css";
 
@@ -87,9 +89,9 @@ const App = () => {
         </div>
       )}
 
-      <button className="board-btn" onClick={displayLeaderBoard}>
-        Lead Board
-      </button>
+
+      <button className="board-btn" onClick={displayLeaderBoard}>Leader Board</button>
+
       {showLeaderBoard && <LeaderBoard />}
     </div>
   );
