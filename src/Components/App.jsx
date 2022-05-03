@@ -10,7 +10,6 @@ const App = () => {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
   const [cardsFlipped, setCardsFlipped] = useState(null);
-  const [currentCard, setCurrentCard] = useState(null);
   const [choice1, setChoice1] = useState(null);
   const [choice2, setChoice2] = useState(null);
   const [showLeaderBoard, setShowLeaderBoard] = useState(false);
@@ -22,7 +21,7 @@ const App = () => {
 
     //                                                    delete later ->
     allCards.splice(4);
-    allCards.forEach(card => { card.meaning = "fire"; });
+    // allCards.forEach(card => { card.meaning = "fire"; });
     //                                                    delete later <-
 
     const shuffledCards = allCards.sort(() => 0.5 - Math.random());
@@ -31,65 +30,47 @@ const App = () => {
 
   const setNewGame = async () => {
     await getAllCards();
-    setCardsFlipped(0);
-    setChoice1(null);
-    setChoice2(null);
-    setTurns(0);
+    // setTurns(0);
+    // setCardsFlipped(0);
   };
 
   const cardClickHandler = (card) => {
     if (card.flipped) return;
     card.flipped = true;
     setTurns(turns + 1);
-    setCurrentCard(card);
-    setChoices();
+    setChoices(card);
+    if (checkFlips()) setShowSubmitName(true);
   };
 
-  const setChoices = () => {
-    if (!choice1) {
-      setChoice1(currentCard);
-    } else if (!choice2) {
-      setChoice2(currentCard);
+  const setChoices = (card) => {
+    if (turns % 2 === 1) {
+      setChoice1(card)
+     } else {
+      setChoice2(card);
+     }
+    checkMatch();
+
+    console.log("choices : ", choice1, choice2);
+    console.log("turns : ", turns);
+    console.log("cardsFlipped : ", cardsFlipped);
+  };
+
+  const checkMatch = () => {
+    if (choice1 && choice2) {
+      choice1.flipped = choice1.meaning === choice2.meaning;
+      choice2.flipped = choice1.flipped;
+
+      if (choice1.flipped) setCardsFlipped(cardsFlipped + 2);
+      console.log(choice1.flipped ? "MATCH" : "DIDN'T MATCH");
+
+      setChoice1(null);
+      setChoice2(null);
     }
   };
 
-  // const checkMatch = () => {
-  //   if (choice1 && choice2) {
-  //     if (choice1.meaning === choice2.meaning) {
-  //       choice1.flipped = true;
-  //       choice2.flipped = true;
-
-  //       setChoice1(null);
-  //       setChoice2(null);
-  //       setTurns(turns + 1);
-  //       setCardsFlipped(cardsFlipped + 2);
-  //       console.log("MATCH");
-  //     } else {
-  //       setTimeout(() => {
-  //         choice1.flipped = false;
-  //         choice2.flipped = false;
-  //         setTurns(turns + 1);
-  //         setChoice1(null);
-  //         setChoice2(null);
-  //       }, "800");
-  //       console.log("DIDN'T MATCH");
-  //     }
-  //   }
-  // };
-
-  const checkMatch = async () => {
-    choice1.flipped = choice1.meaning === choice2.meaning;
-    choice2.flipped = choice1.flipped;
-
-    if (choice1.flipped) {;               // delete later
-      await setCardsFlipped(cardsFlipped + 2);
-      console.log("cardsFlipped : ", cardsFlipped);
-      console.log("cards.length : ", cards.length);
-    };
-    console.log(choice1.flipped ? "MATCH" : "DIDN'T MATCH");
-
-    setChoice1(null);
-    setChoice2(null);
+  const checkFlips = () => {
+    for (const card of cards) if (!card.flipped) return false;
+    return true;
   };
 
   const displayLeaderBoard = () => {
@@ -97,7 +78,11 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (cardsFlipped === cards.length - 2) setShowSubmitName(true);
+    if (cardsFlipped === cards.length) {
+      setTurns(0);
+      setCardsFlipped(0);
+      setShowSubmitName(true);
+    }
   }, [cardsFlipped]);
 
   useEffect(() => {
