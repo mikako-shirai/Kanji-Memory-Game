@@ -25,11 +25,14 @@ const App = () => {
 
   const setNewGame = async () => {
     await getAllCards();
-    setTurns(0);
     setCardsFlipped(0);
+    setChoice1(null);
+    setChoice2(null);
+    setTurns(0);
   };
 
   const cardClickHandler = (card) => {
+    if (card.flipped) return;
     card.flipped = true;
     setTurns(turns + 1);
     setCurrentCard(card);
