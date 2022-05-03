@@ -26,25 +26,25 @@ in backend<br>
 
 ## Setting up your local Database 
 
-Start `psql` in a new terminal.
-In your psql terminal please run the following code to create a database: 
+Start `psql` in a new terminal.<br>
+In your psql terminal please run the following code to create a database: <br>
 
 `CREATE DATABASE kanji_kards;`
 
-Next create an `.env` file: 
-create a file `.env.local`
-Inside the file please use the following code:
+Next create an `.env` file: <br>
+create a file `.env.local`<br>
+Inside the file please use the following code:<br>
 
    
-  ``` DB_NAME=kanji_kards```
-  ``` DB_USER=```
-   ```DB_PASSWORD=NULL```
+  ``` DB_NAME=kanji_kards```<br>
+  ``` DB_USER=```<br>
+   ```DB_PASSWORD=NULL```<br>
 
-In your non-psql terminal, run the following commands:
-`npm run migrate` or `npx knex migrate:latest` to create tables.
-`npm run seed` or `npx knex seed:run` to run the seed. 
-
-Be sure to check your tables in psql to check if you have migrated and seeded correctly!
+In your non-psql terminal, run the following commands:<br>
+`npm run migrate` or `npx knex migrate:latest` to create tables.<br>
+`npm run seed` or `npx knex seed:run` to run the seed. <br>
+<br>
+Be sure to check your tables in psql to check if you have migrated and seeded correctly!<br>
 
 ***
 
