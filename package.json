@@ -13,11 +13,12 @@
     "https-proxy-agent": "^5.0.1",
     "knex": "^2.0.0",
     "morgan": "^1.10.0",
+    "node": "16.x",
     "nodemon": "^2.0.16",
     "pg": "^8.7.3",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^2.1.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
