@@ -9,11 +9,8 @@ require("dotenv").config({
 
 const environment = process.env.NODE_ENV ? "production" : "development";
 const config = require("./knexfile");
-<<<<<<< HEAD
-console.log(config);
+// console.log(config);
 //console.log(config[environment])
-=======
->>>>>>> f4cf25a1fc63affb9ef7caea885a4e01b4eb87c1
 const db = knex(config[environment]);
 const port = process.env.PORT || 8080;
 
