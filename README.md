@@ -14,15 +14,15 @@ The game allows you to select two cards and, if they match, they remain face up.
 
 We updated some feature;
 
-in frontend
--Creates React Components<br>
--Cheating disabled as a feature <br>
--Add Leaderboard<br>
--Fixed Submit Button<br>
+in frontend<br>
+*Creates React Components<br>
+*Cheating disabled as a feature <br>
+*Add Leaderboard<br>
+*Fixed Submit Button<br>
 
-in backend
--Cleans up DB<br>
--Adds MORE Kanji<br>
+in backend<br>
+*Cleans up DB<br>
+*Adds MORE Kanji<br>
 
 ## Setting up your local Database 
 
