@@ -8,16 +8,22 @@ import "../styles/app.css";
 
 const App = () => {
   const [cards, setCards] = useState([]);
+  const [turns, setTurns] = useState(0);
   const [cardsFlipped, setCardsFlipped] = useState(null);
   const [currentCard, setCurrentCard] = useState(null);
   const [choice1, setChoice1] = useState(null);
   const [choice2, setChoice2] = useState(null);
-  const [turns, setTurns] = useState(0);
   const [showLeaderBoard, setShowLeaderBoard] = useState(false);
+  const [showSubmitName, setShowSubmitName] = useState(false);
 
   const getAllCards = async () => {
     const res = await axios.get("/kanji");
     const allCards = res.data;
+
+    //                                                    delete later ->
+    allCards.splice(4);
+    allCards.forEach(card => { card.meaning = "fire"; });
+    //                                                    delete later <-
 
     const shuffledCards = allCards.sort(() => 0.5 - Math.random());
     setCards(shuffledCards);
@@ -42,16 +48,44 @@ const App = () => {
   const setChoices = () => {
     if (!choice1) {
       setChoice1(currentCard);
-    } else {
+    } else if (!choice2) {
       setChoice2(currentCard);
     }
   };
 
-  const checkMatch = () => {
+  // const checkMatch = () => {
+  //   if (choice1 && choice2) {
+  //     if (choice1.meaning === choice2.meaning) {
+  //       choice1.flipped = true;
+  //       choice2.flipped = true;
+
+  //       setChoice1(null);
+  //       setChoice2(null);
+  //       setTurns(turns + 1);
+  //       setCardsFlipped(cardsFlipped + 2);
+  //       console.log("MATCH");
+  //     } else {
+  //       setTimeout(() => {
+  //         choice1.flipped = false;
+  //         choice2.flipped = false;
+  //         setTurns(turns + 1);
+  //         setChoice1(null);
+  //         setChoice2(null);
+  //       }, "800");
+  //       console.log("DIDN'T MATCH");
+  //     }
+  //   }
+  // };
+
+  const checkMatch = async () => {
     choice1.flipped = choice1.meaning === choice2.meaning;
     choice2.flipped = choice1.flipped;
 
-    if (choice1.flipped) setCardsFlipped(cardsFlipped + 2);
+    if (choice1.flipped) {;               // delete later
+      await setCardsFlipped(cardsFlipped + 2);
+      console.log("cardsFlipped : ", cardsFlipped);
+      console.log("cards.length : ", cards.length);
+    };
     console.log(choice1.flipped ? "MATCH" : "DIDN'T MATCH");
 
     setChoice1(null);
@@ -63,7 +97,7 @@ const App = () => {
   }
 
   useEffect(() => {
-    if (cardsFlipped === cards.length) console.log("YOU WON");
+    if (cardsFlipped === cards.length - 2) setShowSubmitName(true);
   }, [cardsFlipped]);
 
   useEffect(() => {
@@ -75,7 +109,7 @@ const App = () => {
       <h1>Kanji Memory Game</h1>
       <button className="new-game-btn" onClick={setNewGame}>New Game</button>
 
-      {cardsFlipped === cards.length && <SubmitName />}
+      {showSubmitName && <SubmitName turns={turns} setShowSubmitName={setShowSubmitName} />}
 
       <CardList cards={cards} cardClickHandler={cardClickHandler} />
 
