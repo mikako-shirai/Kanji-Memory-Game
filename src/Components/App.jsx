@@ -3,8 +3,8 @@ import axios from "axios";
 
 import CardList from './CardList.jsx';
 import SubmitName from './SubmitName.jsx';
-import "../styles/app.css";
 import LeaderBoard from "./LeaderBoard.jsx";
+import "../styles/app.css";
 
 const App = () => {
   const [cards, setCards] = useState([]);
@@ -76,7 +76,7 @@ const App = () => {
 
       <CardList cards={cards} cardClickHandler={cardClickHandler} />
 
-      {cards.length && <div className="display-turns"><h2>Turns: {turns}</h2></div>}
+      {cards.length > 0 && <div className="display-turns"><h2>Turns: {turns}</h2></div>}
 
       <button className="board-btn" onClick={displayLeaderBoard}>Lead Board</button>
       {showLeaderBoard && <LeaderBoard />}
