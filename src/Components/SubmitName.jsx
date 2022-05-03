@@ -17,16 +17,14 @@ const SubmitName = ({ turns, setShowSubmitName }) => {
 
   return (
     <div className="score-board">
-      <div className="score">
-        <h5>You won!</h5>
-        <h5>Enter your name!</h5> 
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <button onClick={submitScore}>Submit</button>
-      </div>
+      <h5>You won!</h5>
+      <h5>Enter your name!</h5> 
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <button onClick={submitScore}>Submit</button>
     </div>
   );
 };
