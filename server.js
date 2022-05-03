@@ -9,7 +9,8 @@ require("dotenv").config({
 
 const environment = process.env.NODE_ENV ? "production" : "development";
 const config = require("./knexfile");
-
+// console.log(config);
+//console.log(config[environment])
 const db = knex(config[environment]);
 const port = process.env.PORT || 8080;
 
@@ -35,6 +36,7 @@ app.get("/kanji", async (req, res) => {
 app.get("/leaderboard", async (req, res) => {
   try {
     let allLeaderboard = await db.select("*").from("leaderboard");
+    console.log(allLeaderboard)
     res.send(allLeaderboard).status(200);
   } catch (err) {
     console.log(err);
