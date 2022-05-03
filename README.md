@@ -1,4 +1,4 @@
-#Kanji Kards
+# Kanji Kards
 
 Sup Nerds!
 
@@ -6,28 +6,23 @@ Using the best possible agile practices, we have created a cutting edge app that
 
 The game allows you to select two cards and, if they match, they remain face up. If the cards do not match, then the cards will turn back over. 
 
-Currently you can cheat in the game, though if you do you should take a long hard look in the mirror and think about what you have done. Something you could do to remedy this shame is to implement a fix to prevent cheaters like you from taking advantage.
+~~Currently you can cheat in the game, though if you do you should take a long hard look in the mirror and think about what you have done. Something you could do to remedy this shame is to implement a fix to prevent cheaters like you from taking advantage.~~
 
-[TL;DR]: Our app is awesome yo! also - make a .env file to connect your db to your server.
+***
 
-subsequent functionality:
+## Kanji Kards 2.0
 
-The To-Do list can be found inside the organisation project tab.
+We updated some feature;
 
-examples of things to do:
+in frontend
+-Creates React Components<br>
+-Cheating disabled as a feature <br>
+-Add Leaderboard<br>
+-Fixed Submit Button<br>
 
-[ ] update css
-[ ] implement a user feature
-[ ] add more kanji to the kanji database
-[ ] allow users to select a subset of kanji to practice
-[ ] split front-end into components
-[ ] add code to prevent cheating
-[ ] add a leaderboard feature
-
-
-Advanced requirements
-
-[ ] implement spaced repetition algorithm to allow for better learning.
+in backend
+-Cleans up DB<br>
+-Adds MORE Kanji<br>
 
 ## Setting up your local Database 
 
@@ -51,6 +46,7 @@ In your non-psql terminal, run the following commands:
 
 Be sure to check your tables in psql to check if you have migrated and seeded correctly!
 
+***
 
 In the project directory, you can run:
 
