@@ -9,11 +9,7 @@ require("dotenv").config({
 
 const environment = process.env.NODE_ENV ? "production" : "development";
 const config = require("./knexfile");
-<<<<<<< HEAD
-console.log(config);
-//console.log(config[environment])
-=======
->>>>>>> f4cf25a1fc63affb9ef7caea885a4e01b4eb87c1
+
 const db = knex(config[environment]);
 const port = process.env.PORT || 8080;
 
@@ -27,8 +23,9 @@ app.get("/a", (req, res) => {
 });
 app.get("/kanji", async (req, res) => {
   try {
-    let allKanji = await db.select("*").from("kanji");
-    console.log(allKanji);
+
+    let allKanji = await db.select('*').from('kanji');
+
     res.send(allKanji).status(200);
   } catch (err) {
     console.log(err);
@@ -46,8 +43,8 @@ app.get("/leaderboard", async (req, res) => {
 
 app.post("/kanji", async (req, res) => {
   try {
-    let newKanji = await db.insert(req.body).into("kanji");
-    res.send(newKanji).status(200);
+    await db.insert(req.body).into("kanji");
+    res.status(200).send();
   } catch (err) {
     console.log(err);
   }
@@ -55,8 +52,9 @@ app.post("/kanji", async (req, res) => {
 
 app.post("/leaderboard", async (req, res) => {
   try {
-    let newScore = await db.insert(req.body).into("leaderboard");
-    res.send(newScore).status(200);
+    let newScoreEntry = req.body;
+    await db.insert(newScoreEntry).into("leaderboard");
+    res.status(200).send();
   } catch (err) {
     console.log(err);
   }
