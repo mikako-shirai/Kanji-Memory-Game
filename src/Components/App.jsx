@@ -18,11 +18,6 @@ const App = () => {
   const getAllCards = async () => {
     const res = await axios.get("/kanji");
     const allCards = res.data;
-
-    //                                                    delete later ->
-    allCards.splice(4);
-    //                                                    delete later <-
-
     const shuffledCards = allCards.sort(() => 0.5 - Math.random());
     setCards(shuffledCards);
   };
