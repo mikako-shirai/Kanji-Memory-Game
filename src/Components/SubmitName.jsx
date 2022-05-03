@@ -1,20 +1,17 @@
 import React, { useState }  from "react";
 import axios from "axios";
 
-const SubmitName = ({ name, label ,turns }) => {
+const SubmitName = ({ turns, setShowSubmitName }) => {
+  const [name, setName] = useState("");
 
-  const [state, setState] = useState("");
-
-  function handleSubmitScore() {
-    let form = SubmitName.current;
-    const userName = form["userName"].value;
-
-    if (userName) {
+  const submitScore = async () => {
+    if (name) {
       const score = {
-        name: userName,
+        name: name,
         score: turns,
       };
-      axios.post("/leaderboard", score);
+      await axios.post("/leaderboard", score);
+      setShowSubmitName(false);
     }
   };
 
@@ -23,15 +20,12 @@ const SubmitName = ({ name, label ,turns }) => {
       <div className="score">
         <h5>You won!</h5>
         <h5>Enter your name!</h5> 
-        <label>{label}</label>
         <input
           type="text"
-          value={state}
-          name={name}
-          onChange={(e) => setState(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
-        <button onClick={handleSubmitScore}>Submit</button>
-        <div>~want to put New Game component~</div>
+        <button onClick={submitScore}>Submit</button>
       </div>
     </div>
   );
