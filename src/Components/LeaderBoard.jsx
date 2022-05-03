@@ -9,7 +9,7 @@ function LeaderBoard (){
     const res = await axios.get("/leaderboard");
     const leadUsers = res.data;
     const sortedUser = leadUsers.sort((a, b)=>b.score - a.score)
-    
+  
     setUsers(sortedUser)
   };
 
